@@ -1,34 +1,82 @@
-<div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
-    <div class="sidebar-header border-bottom">
-        <div class="sidebar-brand">
-            <div class="sidebar-brand-full">
-                <img src="{{ asset('assets/admin/images/logo/weblogo.png') }}" alt="">
-            </div>
-            <svg class="sidebar-brand-narrow" width="32" height="32" alt="CoreUI Logo">
-                <use xlink:href="{{ asset('assets/admin/assets/brand/coreui.svg#signet') }}"></use>
-            </svg>
-        </div>
-        <button class="btn-close d-lg-none" type="button" data-coreui-theme="dark" aria-label="Close"
-            onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
-    </div>
-    <ul class="sidebar-nav" data-coreui="navigation" data-simplebar>
-        <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}">
-                <svg class="nav-icon">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
-                </svg> Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span></a></li>
-        <li class="nav-title">Components</li>
-        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-                <svg class="nav-icon">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-puzzle"></use>
-                </svg> Users</a>
-            <ul class="nav-group-items compact">
-                <li class="nav-item"><a class="nav-link" href="{{ route('all.users') }}"><span class="nav-icon"><span
-                    class="nav-icon-bullet"></span></span> All Users</a></li>
-            </ul>
-        </li>
+ <aside class="left-sidebar sidebar-dark" id="left-sidebar">
+     <div id="sidebar" class="sidebar sidebar-with-footer">
+         <!-- Aplication Brand -->
+         <div class="app-brand">
+             <a href="{{ route('admin.dashboard') }}">
+                 <img src="{{ asset('assets/admin/images/logo.png') }}" alt="Mono">
+             </a>
+         </div>
+         <!-- begin sidebar scrollbar -->
+         <div class="sidebar-left" data-simplebar style="height: 100%;">
+             <!-- sidebar menu -->
+             <ul class="nav sidebar-inner" id="sidebar-menu">
 
-    </ul>
-    <div class="sidebar-footer border-top d-none d-md-flex">
-        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
-    </div>
-</div>
+                 <li class="active">
+                     <a class="sidenav-item-link" href="{{ route('admin.dashboard') }}">
+                         <i class="mdi mdi-briefcase-account-outline"></i>
+                         <span class="nav-text">Dashboard</span>
+                     </a>
+                 </li>
+
+                 <li class="section-title">
+                     Pages
+                 </li>
+
+                 <li class="has-sub">
+                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#users"
+                         aria-expanded="false" aria-controls="users">
+                         <i class="mdi mdi-image-filter-none"></i>
+                         <span class="nav-text">Users</span> <b class="caret"></b>
+                     </a>
+                     <ul class="collapse" id="users" data-parent="#sidebar-menu">
+                         <div class="sub-menu">
+
+                             <li>
+                                 <a class="sidenav-item-link" href="{{ route('all.users') }}">
+                                     <span class="nav-text">User List</span>
+                                 </a>
+                             </li>
+
+                         </div>
+                     </ul>
+                 </li>
+
+                  <li class="has-sub">
+                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#wallet"
+                         aria-expanded="false" aria-controls="users">
+                         <i class="mdi mdi-file-multiple"></i>
+                         <span class="nav-text">Profession</span> <b class="caret"></b>
+                     </a>
+                     <ul class="collapse" id="wallet" data-parent="#sidebar-menu">
+                         <div class="sub-menu">
+
+                             <li>
+                                 <a class="sidenav-item-link" href="{{ route('profession') }}">
+                                     <span class="nav-text">Profession</span>
+
+                                 </a>
+                             </li>
+
+                         </div>
+                     </ul>
+                 </li>
+             </ul>
+
+         </div>
+
+         <div class="sidebar-footer">
+             <div class="sidebar-footer-content">
+                 <ul class="d-flex">
+                     <li>
+                         <a href="user-account-settings.html" data-toggle="tooltip" title="Profile settings"><i
+                                 class="mdi mdi-settings"></i></a>
+                     </li>
+                     <li>
+                         <a href="#" data-toggle="tooltip" title="No chat messages"><i
+                                 class="mdi mdi-chat-processing"></i></a>
+                     </li>
+                 </ul>
+             </div>
+         </div>
+     </div>
+ </aside>

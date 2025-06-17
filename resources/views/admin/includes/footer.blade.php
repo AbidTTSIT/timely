@@ -1,4 +1,13 @@
- <footer class="footer px-4">
-        <div><a href="#">TTSIT </a><a href="#">Admin</a> &copy; 2025 creativeLabs.</div>
-        <div class="ms-auto">Powered by&nbsp;<a href="#">TTSIT</a></div>
-      </footer>
+ <footer class="footer mt-auto">
+                <div class="copyright bg-white">
+                    <p>
+                        &copy; <span id="copy-year"></span> Copyright Timely Dashboard by <a
+                            class="text-primary" href="#" target="_blank">TTSIT</a>.
+                    </p>
+                </div>
+                <script>
+                    var d = new Date();
+                    var year = d.getFullYear();
+                    document.getElementById("copy-year").innerHTML = year;
+                </script>
+            </footer>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
+use Psy\CodeCleaner\FunctionReturnInWriteContextPass;
 
 class AuthControlller extends Controller
 {
@@ -40,6 +41,10 @@ class AuthControlller extends Controller
             flash()->error('Credential Invalid');
             return redirect()->back();
         }
-      
+    }
+
+    public function profile()
+    {
+        return view('admin.profile.profile');
     }
 }

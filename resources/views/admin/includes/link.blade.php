@@ -1,28 +1,51 @@
- <title>Admin || Timely</title>
- <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
- <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
- <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
- <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
- <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
- <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
- <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
- <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
- <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
- <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
- <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
- <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
- <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
- <link rel="manifest" href="assets/favicon/manifest.json">
- <meta name="msapplication-TileColor" content="#ffffff">
- <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
- <meta name="theme-color" content="#ffffff">
- <!-- Vendors styles-->
- <link rel="stylesheet" href="{{ asset('assets/admin/css/simplebar.css') }}">
- <link rel="stylesheet" href="{{ asset('assets/admin/vendors/simplebar.css') }}">
- <!-- Main styles for this application-->
- <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet">
- <!-- We use those styles to show code examples, you should remove them in your application.-->
- <link href="{{ asset('assets/admin/css/examples.css') }}" rel="stylesheet">
- <script src="{{ asset('assets/admin/js/config.js') }}"></script>
- <script src="{{ asset('assets/admin/js/color-modes.js') }}"></script>
- <link href="{{ asset('assets/admin/css/coreui-chartjs.css') }}" rel="stylesheet">
+<!-- theme meta -->
+    <meta name="theme-name" content="mono" />
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
+    <link href="{{ asset('assets/admin/plugins/material/css/materialdesignicons.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/plugins/simplebar/simplebar.css') }}" rel="stylesheet" />
+
+    <!-- PLUGINS CSS STYLE -->
+    <link href="{{ asset('assets/admin/plugins/nprogress/nprogress.css') }}" rel="stylesheet" />
+
+
+
+
+    <link href="{{ asset('assets/admin/plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css') }}" rel="stylesheet" />
+
+
+
+    <link href="{{ asset('assets/admin/plugins/jvectormap/jquery-jvectormap-2.0.3.css') }}" rel="stylesheet" />
+
+
+
+    <link href="{{ asset('assets/admin/plugins/daterangepicker/daterangepicker.css') }}" rel="stylesheet" />
+
+
+
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+
+
+    {{-- <link href="{{ asset('assets/admin/plugins/toaster/toastr.min.css') }}" rel="stylesheet" /> --}}
+
+
+    <!-- MONO CSS -->
+    <link id="main-css-href" rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}" />
+
+
+
+
+    <!-- FAVICON -->
+    <link href="{{ asset('assets/admin/images/favicon.png') }}" rel="shortcut icon" />
+
+    <!--
+    HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+  -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+    <script src="{{ asset('assets/admin/plugins/nprogress/nprogress.js') }}"></script>
