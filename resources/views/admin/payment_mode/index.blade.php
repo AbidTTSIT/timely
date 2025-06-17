@@ -1,14 +1,14 @@
 @extends('admin.layouts.master')
 @section('content')
-    <div class="content-wrapper">
+   <div class="content-wrapper">
         <div class="content">
 
             <!-- Products Inventory -->
             <div class="card card-default">
                 <div class="card-header">
-                    <h2>Professions</h2>
+                    <h2>Payment Mode</h2>
 
-                    <a href="{{ route('store.profession') }}" type="button" class="mb-1 btn btn-success">
+                    <a href="{{ route('store.payment.mode') }}" type="button" class="mb-1 btn btn-success">
                        <i class="mdi mdi-plus mr-1"></i>
                         Add
                     </a>
@@ -21,23 +21,27 @@
                         <thead>
                             <tr>
                                 <th>Sr.No</th>
-                                <th>name</th>
+                                <th>Mode</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($professions as $index => $item)
+                            @forelse ($modes as $index => $item)
                                  <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->mode }}</td>
                                 <td>{{ $item->status }}</td>
                                 <td>
-                                    <a href="{{ route('edit.profession', $item->id) }}" class="p-1"><span class="mdi mdi-pencil"></span></a>
-                                    <a href="{{ route('delete.profession', $item->id) }}" class="p-1"><span class="mdi mdi-trash-can"></span></a>
+                                    <a href="{{ route('edit.mode', $item->id) }}" class="p-1"><span class="mdi mdi-pencil"></span></a>
+                                    <a href="{{ route('delete.mode', $item->id) }}" class="p-1"><span class="mdi mdi-trash-can"></span></a>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center">Data Not Available</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

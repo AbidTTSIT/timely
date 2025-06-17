@@ -45,14 +45,36 @@
                      <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#wallet"
                          aria-expanded="false" aria-controls="users">
                          <i class="mdi mdi-file-multiple"></i>
-                         <span class="nav-text">Profession</span> <b class="caret"></b>
+                         <span class="nav-text">Data Management</span> <b class="caret"></b>
                      </a>
                      <ul class="collapse" id="wallet" data-parent="#sidebar-menu">
                          <div class="sub-menu">
 
                              <li>
-                                 <a class="sidenav-item-link" href="{{ route('profession') }}">
+                                 <a class="sidenav-item-link" href="{{ route('professions') }}">
                                      <span class="nav-text">Profession</span>
+
+                                 </a>
+                             </li>
+
+                             <li>
+                                 <a class="sidenav-item-link" href="{{ route('age') }}">
+                                     <span class="nav-text">Age</span>
+
+                                 </a>
+                             </li>
+
+                             <li>
+                                 <a class="sidenav-item-link" href="{{ route('plan') }}">
+                                     <span class="nav-text">Plan</span>
+
+                                 </a>
+                             </li>
+
+                             
+                             <li>
+                                 <a class="sidenav-item-link" href="{{ route('income') }}">
+                                     <span class="nav-text">Income range</span>
 
                                  </a>
                              </li>
@@ -60,6 +82,7 @@
                          </div>
                      </ul>
                  </li>
+
              </ul>
 
          </div>

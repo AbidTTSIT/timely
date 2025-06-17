@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Profession extends Model
+class IncomeRange extends Model
 {
-     use SoftDeletes;
+    use SoftDeletes;
     protected $fillable = [
-        'name', 'status'
+        'label', 'min_income', 'max_income'
     ];
 }
