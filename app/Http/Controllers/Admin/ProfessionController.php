@@ -40,4 +40,42 @@ class ProfessionController extends Controller
         flash()->success('Profession Added Successfully');
         return redirect()->route('profession');
     }
+
+    public function edit($id)
+    {
+        $data['profession'] = Profession::find($id);
+        return view('admin.profession.edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+       $validate = Validator::make($request->all(), [
+        'name' => 'required|string|unique:professions,name',
+        'status' => 'required'
+       ]);
+
+       if($validate->fails())
+       {
+        return redirect()->back()->withInput()->withErrors($validate);
+       }
+
+       $profession = Profession::where('id', $id)->first();
+
+       $profession->update([
+        'name' => $request->name,
+        'status' => $request->status
+       ]);
+
+       flash()->success('Profession Updated Successfully');
+       return redirect()->route('profession');
+    }
+
+    public function delete($id)
+    {
+        $profession = Profession::where('id', $id)->first();
+        $profession->delete();
+
+        flash()->success('Profession Deleted Sucessfully');
+        return redirect()->back();
+    }
 }

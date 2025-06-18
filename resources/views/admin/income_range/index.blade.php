@@ -1,14 +1,14 @@
 @extends('admin.layouts.master')
 @section('content')
-    <div class="content-wrapper">
+     <div class="content-wrapper">
         <div class="content">
 
             <!-- Products Inventory -->
             <div class="card card-default">
                 <div class="card-header">
-                    <h2>Professions</h2>
+                    <h2>Income Range</h2>
 
-                    <a href="{{ route('store.profession') }}" type="button" class="mb-1 btn btn-success">
+                    <a href="{{ route('store.income') }}" type="button" class="mb-1 btn btn-success">
                        <i class="mdi mdi-plus mr-1"></i>
                         Add
                     </a>
@@ -21,23 +21,31 @@
                         <thead>
                             <tr>
                                 <th>Sr.No</th>
-                                <th>name</th>
+                                <th>Label</th>
+                                <th>Min Income(In lakh)</th>
+                                <th>Max Income(In lakh)</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($professions as $index => $item)
-                                 <tr>
+                            @forelse ($income as $index => $item)
+                            <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->label }}</td>
+                                <td>{{ $item->min_income }}</td>
+                                <td>{{ $item->max_income }}</td>
                                 <td>{{ $item->status }}</td>
                                 <td>
-                                    <a href="{{ route('edit.profession', $item->id) }}" class="p-1"><span class="mdi mdi-pencil"></span></a>
-                                    <a href="{{ route('delete.profession', $item->id) }}" class="p-1"><span class="mdi mdi-trash-can"></span></a>
+                                    <a href="{{ route('edit.income_range', $item->id) }}" class="p-1"><span class="mdi mdi-pencil"></span></a>
+                                    <a href="{{ route('delete.income.range', $item->id) }}" class="p-1"><span class="mdi mdi-trash-can"></span></a>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center">Data Not Available</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
