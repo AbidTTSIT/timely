@@ -14,11 +14,10 @@ use App\Models\UserGoal;
 use Exception;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log;
 
 class UserGoalController extends Controller
 {
-    public function goalCalculate(Request $request)
+   public function goalCalculate(Request $request)
     {
         try {
             $validate = Validator::make($request->all(), [
@@ -36,8 +35,16 @@ class UserGoalController extends Controller
             $profession = Profession::where('name', $request->profession)->firstOrFail()->id;
             $incomeRange = IncomeRange::where('label', $request->income_range[0] . '-' . $request->income_range[1])->firstOrFail()->id;
             $paymentMode = PaymentMode::where('mode', $request->payment_mode)->firstOrFail()->id;
-            $ageGroup = AgeGroup::where('label', $request->age_group[0] . '-' . $request->age_group[1])->firstOrFail()->id;
+            $ageGroup = AgeGroup::with('plans')->where('label', $request->age_group[0] . '-' . $request->age_group[1])->firstOrFail();
             $planType = Plan::where('plan', $request->plan)->firstOrFail()->id;
+
+            $validPlans = $ageGroup->plans->pluck('id')->toArray();
+            if (!in_array($planType, $validPlans)) {
+                return response()->json([
+                    'status' => false,
+                    'error' => 'Selected plan is not available for the given age group.'
+                ], 400);
+            }
 
             $incomeMin = $request->income_range[0];
             $incomeMax = $request->income_range[1];
@@ -47,12 +54,10 @@ class UserGoalController extends Controller
             $ageMax = $request->age_group[1];
             $age = ($ageMin + $ageMax) / 2;
 
-
             $apiKey = env('OPENAI_API_KEY');
             if (empty($apiKey)) {
                 throw new Exception('OpenAI API key is missing in .env file');
             }
-
 
             $client = new Client();
             $response = $client->post('https://openrouter.ai/api/v1/chat/completions', [
@@ -76,7 +81,6 @@ class UserGoalController extends Controller
             $aiResponse = json_decode($response->getBody(), true);
             $aiText = $aiResponse['choices'][0]['message']['content'];
 
-
             preg_match('/Estimated Investment: (\d+\.?\d*)/', $aiText, $investmentMatch);
             preg_match('/Monthly Savings: (\d+\.?\d*)/', $aiText, $savingsMatch);
 
@@ -84,7 +88,6 @@ class UserGoalController extends Controller
             $monthlySavings = isset($savingsMatch[1]) ? floatval($savingsMatch[1]) : 0;
 
             if ($estimatedInvestment == 0 || $monthlySavings == 0) {
-
                 $professionWeight = $this->getProfessionWeight($profession);
                 $ageWeight = $this->getAgeWeight($age);
                 $planWeight = $this->getPlanWeight($planType);
@@ -101,7 +104,7 @@ class UserGoalController extends Controller
                 'profession_id' => $profession,
                 'income_range_id' => $incomeRange,
                 'payment_mode_id' => $paymentMode,
-                'age_group_id' => $ageGroup,
+                'age_group_id' => $ageGroup->id,
                 'plan_id' => $planType,
                 'estimated_investment' => $estimatedInvestment,
                 'monthly_savings' => $monthlySavings
