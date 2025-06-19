@@ -71,10 +71,16 @@
                                  </a>
                              </li>
 
-                             
                              <li>
                                  <a class="sidenav-item-link" href="{{ route('income') }}">
                                      <span class="nav-text">Income range</span>
+
+                                 </a>
+                             </li>
+
+                             <li>
+                                 <a class="sidenav-item-link" href="{{ route('payment_mode') }}">
+                                     <span class="nav-text">Payment Mode</span>
 
                                  </a>
                              </li>

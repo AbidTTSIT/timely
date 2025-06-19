@@ -43,7 +43,7 @@
                                 <button class="btn btn-primary btn-pill mr-2" type="submit">
                                     Submit
                                 </button>
-                                <button class="btn btn-light btn-pill" type="submit">
+                                <button class="btn btn-light btn-pill" type="button">
                                     Cancel
                                 </button>
                             </form>
