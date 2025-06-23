@@ -6,6 +6,7 @@ use App\Http\Controllers\User\Api\IncomeRangeController;
 use App\Http\Controllers\User\Api\PaymentModeController;
 use App\Http\Controllers\User\Api\PlanController;
 use App\Http\Controllers\User\Api\ProfessionController;
+use App\Http\Controllers\User\Api\StockListController;
 use App\Http\Controllers\User\Api\UserGoalController;
 use App\Http\Controllers\User\Api\UserSurveyController;
 use Illuminate\Http\Request;
@@ -17,14 +18,15 @@ Route::get('/user', function (Request $request) {
 
 Route::controller(AuthController::class)->prefix('user')->group(function(){
    Route::post('register', 'register');
+   Route::post('verify-otp', 'verifyOtp');
+   Route::get('forgot-password', 'forgotPassword');
+   Route::post('email-verify-otp', 'emailVerify');
+   Route::post('change-password', 'changePassword');
+   Route::get('resend-otp', 'resendOtp');
    Route::post('login', 'login');
 });
 
 Route::middleware('auth:api')->group(function(){
-    Route::controller(UserSurveyController::class)->prefix('user')->group(function(){
-        Route::post('user-survey', 'store');
-    });
-
     Route::controller(ProfessionController::class)->prefix('user')->group(function(){
         Route::get('professions', 'professions');
     });
@@ -47,5 +49,9 @@ Route::middleware('auth:api')->group(function(){
 
     Route::controller(UserGoalController::class)->prefix('user')->group(function(){
         Route::post('goal/calculate', 'goalCalculate');
+    });
+
+    Route::controller(StockListController::class)->group(function(){
+        Route::get('stock-list', 'getStockList');
     });
 });

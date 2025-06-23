@@ -14,6 +14,7 @@ use App\Models\UserGoal;
 use Exception;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
+use App\Services\SmartApiService;
 
 class UserGoalController extends Controller
 {
@@ -108,12 +109,35 @@ class UserGoalController extends Controller
                 'plan_id' => $planType,
                 'estimated_investment' => $estimatedInvestment,
                 'monthly_savings' => $monthlySavings
-            ]);
+            ]); 
+
+            $smartApi = new SmartApiService();
+            // dd($smartApi);
+            $symbols = ['HDFCBANK-EQ', 'SBIN-EQ', 'BHARTIARTL-EQ'];
+
+            $stockData = [];
+
+            foreach($symbols as $symbol)
+            {
+                // $quote = $smartApi->getQuote($symbol);
+
+                $stockData[] = [
+                    'symbol' => $symbol,
+                    'ltp' => $quote['data'][$symbol]['lastPrice'] ?? null,
+                    'changePercent' => $quote['data'][$symbol]['netChange'] ?? null,
+                    'company_name' => $quote['data'][$symbol]['companyName'] ?? '',
+                    'logo' => asset('logos/' . strtolower(explode('-', $symbol)[0]) . '.png'),
+                    'expected_growth_percent' => rand(20, 50), 
+                    'duration' => '3 years',
+                    'investment_amount' => round($estimatedInvestment / count($symbols)),
+                ];
+            }
 
             return response()->json([
                 'status' => true,
                 'message' => 'Goal Calculated with AI-based logic',
-                'data' => $goal
+                'data' => $goal,
+                'recommended_stocks' => $stockData
             ], 200);
         } catch (Exception $e) {
             return response()->json([
